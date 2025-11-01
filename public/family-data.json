@@ -1,0 +1,158 @@
+{
+  "rootPersonId": "1",
+  "people": [
+    {
+      "id": "1",
+      "name": "Thomas Varghese",
+      "generation": 1,
+      "occupation": "Retired Teacher",
+      "location": "Kottayam, Kerala",
+      "description": "Patriarch of the family. Taught Malayalam literature for 35 years at St. Thomas High School. Known for his love of poetry and traditional Kerala Christian hymns.",
+      "birthDate": "1945",
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas"
+    },
+    {
+      "id": "2",
+      "name": "Mary Thomas",
+      "generation": 1,
+      "occupation": "Homemaker",
+      "location": "Kottayam, Kerala",
+      "description": "Matriarch of the family. Expert in traditional Kerala Christian cuisine. Active member of the church choir for over 40 years.",
+      "birthDate": "1948",
+      "spouseId": "1",
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Mary"
+    },
+    {
+      "id": "3",
+      "name": "George Thomas",
+      "generation": 2,
+      "occupation": "Software Engineer",
+      "location": "San Francisco, USA",
+      "description": "Eldest son. Moved to the US in 2005 for higher studies. Works at a tech company in Silicon Valley. Maintains strong ties to Kerala culture and visits home annually.",
+      "birthDate": "1975",
+      "parentIds": ["1", "2"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=George"
+    },
+    {
+      "id": "4",
+      "name": "Sarah George",
+      "generation": 2,
+      "occupation": "Pediatrician",
+      "location": "San Francisco, USA",
+      "description": "Married to George in 2008. Originally from Thrissur. Practices medicine in the Bay Area and volunteers at community health clinics.",
+      "birthDate": "1978",
+      "spouseId": "3",
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+    },
+    {
+      "id": "5",
+      "name": "Anna Thomas",
+      "generation": 2,
+      "occupation": "Architect",
+      "location": "Dubai, UAE",
+      "description": "Second child. Specializes in sustainable architecture. Has been working in the Middle East since 2010. Designs eco-friendly buildings and urban spaces.",
+      "birthDate": "1978",
+      "parentIds": ["1", "2"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Anna"
+    },
+    {
+      "id": "6",
+      "name": "Jacob Mathew",
+      "generation": 2,
+      "occupation": "Civil Engineer",
+      "location": "Dubai, UAE",
+      "description": "Married to Anna in 2005. From Ernakulam. Works on major infrastructure projects in the UAE. Passionate about Kerala's traditional architecture.",
+      "birthDate": "1976",
+      "spouseId": "5",
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jacob"
+    },
+    {
+      "id": "7",
+      "name": "Paul Thomas",
+      "generation": 2,
+      "occupation": "Doctor",
+      "location": "Kottayam, Kerala",
+      "description": "Youngest son. Runs a family clinic in Kottayam. Chose to stay in Kerala to serve the local community. Active in church activities and medical camps.",
+      "birthDate": "1982",
+      "parentIds": ["1", "2"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Paul"
+    },
+    {
+      "id": "8",
+      "name": "Rachel Paul",
+      "generation": 2,
+      "occupation": "Nurse",
+      "location": "Kottayam, Kerala",
+      "description": "Married to Paul in 2010. Works alongside him at the family clinic. Known for her compassionate care and dedication to patients.",
+      "birthDate": "1985",
+      "spouseId": "7",
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Rachel"
+    },
+    {
+      "id": "9",
+      "name": "Thomas George",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "San Francisco, USA",
+      "description": "Eldest grandchild. High school student interested in computer science and robotics. Learning Malayalam and enjoys visiting Kerala during summer vacations.",
+      "birthDate": "2010",
+      "parentIds": ["3", "4"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=ThomasJr"
+    },
+    {
+      "id": "10",
+      "name": "Maria George",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "San Francisco, USA",
+      "description": "Second grandchild. Middle school student who loves art and music. Takes Bharatanatyam classes and is learning to play the violin.",
+      "birthDate": "2013",
+      "parentIds": ["3", "4"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria"
+    },
+    {
+      "id": "11",
+      "name": "David Jacob",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "Dubai, UAE",
+      "description": "Third grandchild. Elementary school student. Bilingual in English and Malayalam. Loves soccer and swimming.",
+      "birthDate": "2012",
+      "parentIds": ["5", "6"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
+    },
+    {
+      "id": "12",
+      "name": "Esther Jacob",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "Dubai, UAE",
+      "description": "Fourth grandchild. Kindergarten student. Enjoys drawing and storytelling. Loves listening to her grandmother's stories about Kerala.",
+      "birthDate": "2016",
+      "parentIds": ["5", "6"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Esther"
+    },
+    {
+      "id": "13",
+      "name": "John Paul",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "Kottayam, Kerala",
+      "description": "Fifth grandchild. High school student planning to study medicine. Helps at his parents' clinic during school breaks. Active in youth ministry.",
+      "birthDate": "2011",
+      "parentIds": ["7", "8"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
+    },
+    {
+      "id": "14",
+      "name": "Grace Paul",
+      "generation": 3,
+      "occupation": "Student",
+      "location": "Kottayam, Kerala",
+      "description": "Youngest grandchild. Middle school student who excels in academics. Loves reading and participates in church choir like her great-grandmother.",
+      "birthDate": "2014",
+      "parentIds": ["7", "8"],
+      "photo": "https://api.dicebear.com/7.x/avataaars/svg?seed=Grace"
+    }
+  ]
+}
