@@ -12,6 +12,7 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import PersonNode from './PersonNode';
+import GroupNode from './GroupNode';
 import PersonDetail from './PersonDetail';
 import { useFamilyData } from '../hooks/useFamilyData';
 import type { Person } from '../types/family';
@@ -19,6 +20,7 @@ import { Loader2 } from 'lucide-react';
 
 const nodeTypes = {
   person: PersonNode,
+  group: GroupNode,
 };
 
 const FamilyTree = () => {
@@ -63,38 +65,55 @@ const FamilyTree = () => {
 
       // Position root generation (no parents) - centered
       if (rootPeople.length > 0) {
-        // Center the couple around x=0
-        // Place first person to the left, spouse to the right
-        const halfGap = spouseOffset / 2;
-        
-        rootPeople.forEach((person) => {
-          const spouse = people.find(p => p.spouseId === person.id);
-          
+        // For generation 1, create a group node containing both people
+        if (generation === 1) {
+          const gen1People = [...rootPeople];
+          const spouse = people.find(p => p.spouseId && rootPeople.some(rp => rp.id === p.spouseId));
           if (spouse) {
-            // Position couple symmetrically around x=0
-            nodes.push({
-              id: person.id,
-              type: 'person',
-              position: { x: -halfGap - cardWidth, y: genIndex * verticalSpacing },
-              data: { person, onPersonClick: setSelectedPerson },
-            });
-            
-            nodes.push({
-              id: spouse.id,
-              type: 'person',
-              position: { x: halfGap, y: genIndex * verticalSpacing },
-              data: { person: spouse, onPersonClick: setSelectedPerson },
-            });
-          } else {
-            // Single person, center them at x=0
-            nodes.push({
-              id: person.id,
-              type: 'person',
-              position: { x: -cardWidth / 2, y: genIndex * verticalSpacing },
-              data: { person, onPersonClick: setSelectedPerson },
-            });
+            gen1People.push(spouse);
           }
-        });
+          
+          // Create a single group node for generation 1
+          const groupWidth = (cardWidth * 2) + 18 + 40; // 2 cards + gap + padding
+          nodes.push({
+            id: 'gen1-group',
+            type: 'group',
+            position: { x: -groupWidth / 2, y: genIndex * verticalSpacing },
+            data: { people: gen1People, onPersonClick: setSelectedPerson },
+          });
+        } else {
+          // For other generations, use individual nodes
+          const halfGap = spouseOffset / 2;
+          
+          rootPeople.forEach((person) => {
+            const spouse = people.find(p => p.spouseId === person.id);
+            
+            if (spouse) {
+              // Position couple symmetrically around x=0
+              nodes.push({
+                id: person.id,
+                type: 'person',
+                position: { x: -halfGap - cardWidth, y: genIndex * verticalSpacing },
+                data: { person, onPersonClick: setSelectedPerson },
+              });
+              
+              nodes.push({
+                id: spouse.id,
+                type: 'person',
+                position: { x: halfGap, y: genIndex * verticalSpacing },
+                data: { person: spouse, onPersonClick: setSelectedPerson },
+              });
+            } else {
+              // Single person, center them at x=0
+              nodes.push({
+                id: person.id,
+                type: 'person',
+                position: { x: -cardWidth / 2, y: genIndex * verticalSpacing },
+                data: { person, onPersonClick: setSelectedPerson },
+              });
+            }
+          });
+        }
       }
 
       // Position children under their parents
@@ -148,17 +167,32 @@ const FamilyTree = () => {
               });
             }
 
-            // Create direct edges from both parents to child
-            parentIds.forEach(parentId => {
+            // Create edges from parents to child
+            // If parents are in generation 1, connect from the group node
+            const firstParent = familyData.people.find(p => p.id === parentIds[0]);
+            if (firstParent && firstParent.generation === 1) {
+              // Connect from the gen1-group node
               edges.push({
-                id: `${parentId}-${child.id}`,
-                source: parentId,
+                id: `gen1-group-${child.id}`,
+                source: 'gen1-group',
                 target: child.id,
                 type: 'straight',
                 animated: false,
                 style: { stroke: 'rgba(13, 115, 119, 0.5)', strokeWidth: 1.5 },
               });
-            });
+            } else {
+              // Connect from individual parent nodes
+              parentIds.forEach(parentId => {
+                edges.push({
+                  id: `${parentId}-${child.id}`,
+                  source: parentId,
+                  target: child.id,
+                  type: 'straight',
+                  animated: false,
+                  style: { stroke: 'rgba(13, 115, 119, 0.5)', strokeWidth: 1.5 },
+                });
+              });
+            }
           });
           
           // Move to next family group position
